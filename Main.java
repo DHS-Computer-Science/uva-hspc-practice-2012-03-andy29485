@@ -4,13 +4,13 @@
 
 import java.io.*;
 
-public class Rect {
+class Rect {
   private double width;
   private double height;
 
   public Rect(double x1, double y1, double x2, double y2) {
-    this.width  = x1-x2;
-    this.height = y1-y2;
+    this.width  = x2-x1;
+    this.height = y2-y1;
   }
 
   public static Rect gen(double... points) {
@@ -54,12 +54,12 @@ public class Main {
 
     int nCases = Integer.valueOf(input.readLine());
     for(int i=1; i<=nCases; i++) {
-      int   nAnts  = Integer.valueOf(input.readLine());
-      int[] points = new int[nAnts*2];
+      int   nAnts      = Integer.valueOf(input.readLine());
+      double[] points  = new double[nAnts*2];
       for(int j=0; j<nAnts; j++) {
         String[] point = input.readLine().split("\\s+");
-        points[j]      = Double.valueOf(point[0]);
-        points[j+1]    = Double.valueOf(point[1]);
+        points[2*j]    = Double.valueOf(point[0]);
+        points[2*j+1]  = Double.valueOf(point[1]);
       }
       Rect rect = Rect.gen(points);
       System.out.println("Case "+i+": Area "+rect.area()+
